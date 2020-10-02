@@ -41,35 +41,33 @@
     </ul>
   </div>
 </nav>
-    <div class="container">
+    <div class="container my-5">
         <div class="row">
-            <div class="col">
-                <form action="{{route('users.update', $users->id_user)}}" method="post">
-                    @csrf 
+            <div class="col ">
+                <h2 class="text-danger text-center">Registra un producto</h2>
+                <form action="{{ route('products.update',$products->id) }}" method="post" enctype="multipart/form-data" class="d-flex flex-column justify-content-center align-items-center">
+                     @csrf
                     @method ('PUT')
                     <div class="col-6">
                     <label for="">Nombre</label>
-                    <input class="form-control" type="text" name="names" value="{{$users->names}}">
+                    <input class="form-control" type="text" name="name" value="{{$products->name}}">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="exampleFormControlTextarea1">Descripcion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{$products->description}}</textarea>
                     </div>
                     <div class="col-6">
-                    <label for="">Apellido</label>
-                    <input class="form-control" type="text" name="lastnames" value="{{$users->lastnames}}">
+                    <label for="">precio</label>
+                    <input class="form-control" type="text" name="price" value="{{$products->price}}">
                     </div>
-                    <div class="col-6">
-                    <label for="">Email</label>
-                    <input class="form-control" type="text" name="email" value="{{$users->email}}">
+                    <div class="form-group col-6">
+                        <label for="exampleFormControlFile1">Imagen</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="product_image">
                     </div>
-                    <div class="col-6">
-                    <label for="">Age</label>
-                    <input class="form-control" type="text" name="age" value="{{$users->age}}">
-                    </div>
-                    <div class="col-6">
-                    <label for="">Password</label>
-                    <input class="form-control" type="password" name="password">
-                    </div>
+                    <input type="hidden" name="users_id" value="4">
                     <div class="my-2 d-flex justify-content-center">
-                    <a href="{{route('users.index')}}" class="btn btn-danger">Regresar al inicio</a>
-                    <button class="btn btn-primary mx-2">Registrar</button> 
+                    <a href="{{route('products.products')}}" class="btn btn-danger">Regresar al inicio</a>
+                    <button class="btn btn-primary mx-2">Actualizar</button> 
                     </div>
                 </form>
             </div>

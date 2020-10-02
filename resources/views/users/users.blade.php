@@ -42,36 +42,42 @@
   </div>
 </nav>
     <div class="container">
+    <br><br>
         <div class="row">
-            <div class="col">
-                <form action="{{route('users.update', $users->id_user)}}" method="post">
-                    @csrf 
-                    @method ('PUT')
-                    <div class="col-6">
-                    <label for="">Nombre</label>
-                    <input class="form-control" type="text" name="names" value="{{$users->names}}">
-                    </div>
-                    <div class="col-6">
-                    <label for="">Apellido</label>
-                    <input class="form-control" type="text" name="lastnames" value="{{$users->lastnames}}">
-                    </div>
-                    <div class="col-6">
-                    <label for="">Email</label>
-                    <input class="form-control" type="text" name="email" value="{{$users->email}}">
-                    </div>
-                    <div class="col-6">
-                    <label for="">Age</label>
-                    <input class="form-control" type="text" name="age" value="{{$users->age}}">
-                    </div>
-                    <div class="col-6">
-                    <label for="">Password</label>
-                    <input class="form-control" type="password" name="password">
-                    </div>
-                    <div class="my-2 d-flex justify-content-center">
-                    <a href="{{route('users.index')}}" class="btn btn-danger">Regresar al inicio</a>
-                    <button class="btn btn-primary mx-2">Registrar</button> 
-                    </div>
-                </form>
+            <div class="">
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr class="bg-danger text-white">
+                            <th>Name</th>
+                            <th>Lastname</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($users as $user)
+                        <tr>
+                            <form action="{{route('users.destroy',$user->id_user)}}" method="post"> 
+                                @csrf
+                                @method('DELETE')
+                                <td>{{$user -> names}}</td>
+                                <td>{{$user -> lastnames}}</td>
+                                <td>{{$user -> age}}</td>
+                                <td>{{$user -> email}}</td>
+                                <td class="center">
+                                    <button class="btn bg-success"><i class="material-icons text-white">add</i></button>
+                                    <button type="submit" class="btn bg-danger"><i class="material-icons text-white">delete</i></button>
+                                    <a class="btn bg-dark" href="{{route('users.edit',$user->id_user)}}"><i class="material-icons text-light">settings</i></a>
+                                </td>
+                            </form>
+
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a class="btn bg-danger text-white border-50" href="{{route('users.create')}}">REGISTRAR</a>
             </div>
         </div>
     </div>
